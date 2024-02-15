@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-solid-principles-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsup src --out-dir build",
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "solid",
+    "api"
+  ],
+  "author": "EricDosReis",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.11.17",
+    "@typescript-eslint/eslint-plugin": "7.0.1",
+    "@typescript-eslint/parser": "7.0.1",
+    "eslint": "8.56.0",
+    "prettier": "3.2.5",
+    "tsup": "8.0.2",
+    "tsx": "4.7.1",
+    "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "dotenv": "16.4.4",
+    "fastify": "4.26.1",
+    "zod": "3.22.4"
+  }
+}
