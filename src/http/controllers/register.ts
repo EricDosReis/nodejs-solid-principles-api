@@ -2,6 +2,7 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
 import { UsersRepository } from '@/repositories/users';
+import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists';
 import { RegisterUseCase } from '@/use-cases/register';
 
 export async function register(
@@ -26,7 +27,11 @@ export async function register(
       password,
     });
   } catch (error) {
-    response.status(409).send();
+    if (error instanceof UserAlreadyExistsError) {
+      return response.status(409).send({ message: error.message });
+    }
+
+    throw error;
   }
 
   return response.status(201).send();
