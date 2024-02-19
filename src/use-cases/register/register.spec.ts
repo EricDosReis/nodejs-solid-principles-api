@@ -1,14 +1,19 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { InMemoryUsersRepository } from '@/repositories/users/in-memory-users';
 import { UserAlreadyExistsError } from '../errors/user-already-exists';
 import { RegisterUseCase } from './register';
 
-describe('RegisterUseCase', () => {
-  it('should not be able to use the same email twice', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const registerUseCase = new RegisterUseCase(usersRepository);
+let usersRepository: InMemoryUsersRepository;
+let registerUseCase: RegisterUseCase;
 
+describe('RegisterUseCase', () => {
+  beforeEach(() => {
+    usersRepository = new InMemoryUsersRepository();
+    registerUseCase = new RegisterUseCase(usersRepository);
+  });
+
+  it('should not be able to use the same email twice', async () => {
     const email = 'user@email.com';
 
     await registerUseCase.execute({
@@ -27,9 +32,6 @@ describe('RegisterUseCase', () => {
   });
 
   it('should be able to register', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const registerUseCase = new RegisterUseCase(usersRepository);
-
     const { user } = await registerUseCase.execute({
       email: 'user@email.com',
       name: 'John Doe',
