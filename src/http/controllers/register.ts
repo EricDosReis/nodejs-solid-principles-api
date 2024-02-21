@@ -1,9 +1,8 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
-import { UsersRepository } from '@/repositories/users';
 import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists';
-import { RegisterUseCase } from '@/use-cases/register';
+import { makeRegisterUseCase } from '@/use-cases/factories/make-register-use-case';
 
 export async function register(
   request: FastifyRequest,
@@ -18,8 +17,7 @@ export async function register(
   const { email, name, password } = registerBodySchema.parse(request.body);
 
   try {
-    const usersRepository = new UsersRepository();
-    const registerUseCase = new RegisterUseCase(usersRepository);
+    const registerUseCase = makeRegisterUseCase();
 
     const user = await registerUseCase.execute({
       email,

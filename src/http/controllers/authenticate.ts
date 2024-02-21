@@ -1,9 +1,8 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
-import { UsersRepository } from '@/repositories/users';
-import { AuthenticateUseCase } from '@/use-cases/authenticate';
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error';
+import { makeAuthenticateUseCase } from '@/use-cases/factories/make-authenticate-use-case';
 
 export async function authenticate(
   request: FastifyRequest,
@@ -17,8 +16,7 @@ export async function authenticate(
   const { email, password } = authenticateBodySchema.parse(request.body);
 
   try {
-    const usersRepository = new UsersRepository();
-    const authenticateUseCase = new AuthenticateUseCase(usersRepository);
+    const authenticateUseCase = makeAuthenticateUseCase();
 
     const user = await authenticateUseCase.execute({
       email,
