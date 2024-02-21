@@ -1,6 +1,6 @@
 import { IUsersRepository } from '@/repositories/users';
 import { compare } from 'bcryptjs';
-import { InvalidCredentialsError } from '../errors/invalid-credentials-error';
+import { InvalidCredentialsError } from '../errors/invalid-credentials';
 
 interface RegisterUseCaseParams {
   email: string;
