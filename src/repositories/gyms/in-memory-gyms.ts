@@ -3,6 +3,8 @@ import { randomUUID } from 'node:crypto';
 
 import type { IGymsRepository } from './types';
 
+const NUMBER_OF_ITEMS_PER_PAGE = 20;
+
 export class InMemoryGymsRepository implements IGymsRepository {
   public gyms: Gym[] = [];
 
@@ -30,5 +32,14 @@ export class InMemoryGymsRepository implements IGymsRepository {
     }
 
     return gym;
+  }
+
+  async searchMany(query: string, page: number) {
+    return this.gyms
+      .filter(gym => gym.title.includes(query))
+      .slice(
+        (page - 1) * NUMBER_OF_ITEMS_PER_PAGE,
+        page * NUMBER_OF_ITEMS_PER_PAGE,
+      );
   }
 }
