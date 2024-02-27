@@ -4,6 +4,8 @@ import { randomUUID } from 'node:crypto';
 import dayjs from 'dayjs';
 import type { ICheckInsRepository } from './types';
 
+const NUMBER_OF_ITEMS_PER_PAGE = 20;
+
 export class InMemoryCheckInsRepository implements ICheckInsRepository {
   public checkIns: CheckIn[] = [];
 
@@ -38,5 +40,14 @@ export class InMemoryCheckInsRepository implements ICheckInsRepository {
     }
 
     return checkInOnSameDate;
+  }
+
+  async findManyByUserId(userId: string, page: number) {
+    return this.checkIns
+      .filter(checkIn => checkIn.user_id === userId)
+      .slice(
+        (page - 1) * NUMBER_OF_ITEMS_PER_PAGE,
+        page * NUMBER_OF_ITEMS_PER_PAGE,
+      );
   }
 }

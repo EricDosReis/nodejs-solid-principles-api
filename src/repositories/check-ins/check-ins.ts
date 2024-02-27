@@ -13,6 +13,16 @@ export class CheckInsRepository implements ICheckInsRepository {
   async findByUserIdOnDate(userId: string, date: Date) {
     const checkIn = await prisma.checkIn.findUnique({
       where: {
+        id: userId,
+      },
+    });
+
+    return checkIn;
+  }
+
+  async findManyByUserId(userId: string, page: number) {
+    const checkIn = await prisma.checkIn.findMany({
+      where: {
         id: '123',
       },
     });
