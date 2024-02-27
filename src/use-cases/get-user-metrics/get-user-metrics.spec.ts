@@ -6,7 +6,7 @@ import { GetUserMetricsUseCase } from './get-user-metrics';
 let checkInsRepository: InMemoryCheckInsRepository;
 let getUserMetricsUseCase: GetUserMetricsUseCase;
 
-describe('GetUserCheckInsHistory', () => {
+describe('GetUserMetricsUseCase', () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository();
     getUserMetricsUseCase = new GetUserMetricsUseCase(checkInsRepository);
