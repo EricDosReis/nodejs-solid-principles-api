@@ -1,0 +1,1 @@
+export const MAX_TIME_TO_CHECK_IN_MINUTES = 20;
