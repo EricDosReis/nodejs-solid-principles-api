@@ -32,7 +32,7 @@ describe('CheckInUseCase', () => {
     vi.useRealTimers();
   });
 
-  it('should be able to check in', async () => {
+  it('should be able to check-in', async () => {
     const { checkIn } = await checkInUseCase.execute({
       userId: 'user-01',
       gymId: 'gym-01',
@@ -43,7 +43,7 @@ describe('CheckInUseCase', () => {
     expect(checkIn.id).toEqual(expect.any(String));
   });
 
-  it('should not be able to check in twice on the same day', async () => {
+  it('should not be able to check-in twice on the same day', async () => {
     vi.setSystemTime(new Date(2023, 1, 22, 8, 0, 0));
 
     await checkInUseCase.execute({
@@ -63,7 +63,7 @@ describe('CheckInUseCase', () => {
     ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError);
   });
 
-  it('should be able to check in on diferent days', async () => {
+  it('should be able to check-in on diferent days', async () => {
     vi.setSystemTime(new Date(2023, 1, 22, 8, 0, 0));
 
     await checkInUseCase.execute({
