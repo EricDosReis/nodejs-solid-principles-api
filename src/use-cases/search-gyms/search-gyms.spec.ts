@@ -38,7 +38,7 @@ describe('SearchGymsUseCase', () => {
     expect(gyms).toEqual([expect.objectContaining({ title: 'Skatude Gym' })]);
   });
 
-  it.skip('should get a paginated gym search', async () => {
+  it('should get a paginated gym search', async () => {
     for (let i = 1; i <= 21; i++) {
       await gymsRepository.create({
         title: `Wow Skate Gym ${i}`,
