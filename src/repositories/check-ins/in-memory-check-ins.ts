@@ -1,10 +1,9 @@
 import type { CheckIn, Prisma } from '@prisma/client';
+import dayjs from 'dayjs';
 import { randomUUID } from 'node:crypto';
 
-import dayjs from 'dayjs';
+import { NUMBER_OF_ITEMS_PER_PAGE } from './constants';
 import type { ICheckInsRepository } from './types';
-
-const NUMBER_OF_ITEMS_PER_PAGE = 20;
 
 export class InMemoryCheckInsRepository implements ICheckInsRepository {
   public checkIns: CheckIn[] = [];
