@@ -9,9 +9,11 @@ export async function profile(request: FastifyRequest, response: FastifyReply) {
   const { id, email, name, created_at } = user;
 
   return response.status(200).send({
-    id,
-    email,
-    name,
-    created_at,
+    user: {
+      id,
+      email,
+      name,
+      created_at,
+    },
   });
 }
