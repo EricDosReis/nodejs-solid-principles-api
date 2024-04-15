@@ -3,7 +3,11 @@ import fastify from 'fastify';
 import { ZodError } from 'zod';
 
 import { env } from './env';
-import { gymsRoutes, usersRoutes } from './http/controllers/routes';
+import {
+  checkInsRoutes,
+  gymsRoutes,
+  usersRoutes,
+} from './http/controllers/routes';
 
 export const app = fastify();
 
@@ -11,6 +15,7 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 });
 
+app.register(checkInsRoutes);
 app.register(gymsRoutes);
 app.register(usersRoutes);
 
