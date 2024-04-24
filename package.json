@@ -13,7 +13,8 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:e2e": "vitest run --dir src/http",
-    "db": "prisma studio"
+    "db": "prisma studio",
+    "db:migrate:dev": "npx prisma migrate dev"
   },
   "keywords": [
     "nodejs",
